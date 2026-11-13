@@ -691,17 +691,7 @@
 
                 updateStepUI(3, 'active', 'Verificando en Base de Datos MySQL...', '75% COMPLETADO');
                 
-                const res = await fetch(`${API_URL}/verificar-alumno`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        dni: dniVal, 
-                        tramite: tramiteVal, 
-                        score_biometrico: parseFloat(scoreBiometrico) 
-                    })
-                });
-
-                const data = await res.json();
+                const data = await verificarAlumno(dniVal, tramiteVal, parseFloat(scoreBiometrico));
 
                 if (!res.ok || !data.exito) {
                     updateStepUI(3, 'active', `Error BD: ${data.mensaje || 'DNI no encontrado'}`, '75% COMPLETADO');
