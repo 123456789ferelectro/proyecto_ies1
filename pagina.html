@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto de Educación Superior N° 1 - Abra Pampa</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Librería jsPDF para generación de PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ies: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            dark: '#0f172a',
+                            gold: '#f59e0b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-banner {
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 50%, #0f172a 100%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col relative">
+
+    <!-- Encabezado Institucional -->
+    <header class="bg-ies-dark text-white border-b border-ies-800 sticky top-0 z-50 shadow-md">
+        <!-- Barra Superior -->
+        <div class="bg-ies-900 text-xs py-1.5 px-4 text-slate-300 border-b border-slate-700/50">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-ies-600"></i> La Quiaca - Abra Pampa - Tilcara - Jujuy</span>
+                    <span class="hidden md:inline-flex items-center gap-1"><i data-lucide="phone" class="w-3.5 h-3.5 text-ies-600"></i> Red INFD Jujuy</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full text-[10px] font-semibold border border-emerald-500/30 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Portal IA Activo
+                    </span>
+                    <a href="#tramites" class="hover:text-amber-400 transition text-[11px] font-medium">Campus Virtual</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegación Principal -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-full p-0.5 shadow-lg group-hover:scale-105 transition duration-300 flex items-center justify-center bg-white/10">
+                        <img src="277751642_434256015170610_8799041938373749076_n-removebg-preview.png" alt="Logo IES N° 1" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-base sm:text-lg leading-tight tracking-tight text-white group-hover:text-amber-400 transition">
+                            Instituto de Educación Superior N° 1
+                        </h1>
+                        <p class="text-xs text-slate-400 font-medium">Ministerio de Educación - Provincia de Jujuy</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-1 font-medium text-sm">
+                    <a href="#inicio" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition">Inicio</a>
+                    <a href="#carreras" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition">Oferta Académica</a>
+                    <a href="#tramites" class="px-3 py-2 rounded-lg bg-ies-600 hover:bg-ies-700 text-white font-semibold transition flex items-center gap-1.5 shadow-md shadow-ies-600/30 border border-ies-500">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-amber-300"></i> Trámites e IA
+                    </a>
+                    <a href="#noticias" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition">Novedades</a>
+                    <a href="#contacto" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition">Contacto</a>
+                </nav>
+
+                <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-300 hover:bg-slate-800 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section id="inicio" class="gradient-banner text-white relative overflow-hidden py-12 md:py-20 border-b border-ies-800">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ies-600/30 border border-ies-500/40 text-amber-300 text-xs font-medium">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Innovación Educativa & Transformación Digital
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        Formación Superior con Futuro Tecnológico en Jujuy
+                    </h2>
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light">
+                        Bienvenido al portal del IES N° 1. Formamos profesionales técnicos y docentes comprometidos con el desarrollo regional, la ciencia y la innovación.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
+                        <a href="#tramites" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2">
+                            <i data-lucide="scan-face" class="w-5 h-5"></i>
+                            Probar Trámites con IA
+                        </a>
+                        <a href="#carreras" class="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 font-semibold transition flex items-center justify-center gap-2">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 text-ies-600"></i>
+                            Explorar Carreras
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-900/80 backdrop-blur border border-slate-700/60 rounded-2xl p-6 shadow-2xl relative">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">modulo_validacion_v2.0</span>
+                        </div>
+                        <div class="py-6 space-y-4">
+                            <div class="flex items-start gap-4 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                <div class="p-2 bg-ies-600/20 rounded-lg text-ies-600">
+                                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Verificación en Tiempo Real</h4>
+                                    <p class="text-xs text-slate-400">Reconocimiento facial y OCR de DNI integrado.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                <div class="p-2 bg-amber-500/20 rounded-lg text-amber-400">
+                                    <i data-lucide="file-check-2" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Certificación Inmediata</h4>
+                                    <p class="text-xs text-slate-400">Emisión digital de constancias de alumno regular.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-2 text-center border-t border-slate-800">
+                            <span class="text-xs text-emerald-400 font-medium flex items-center justify-center gap-1">
+                                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Sistema 100% Autónomo y Seguro
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÓDULO PRINCIPAL: SIMULACIÓN DE PROYECTO DE IA Y TRÁMITES -->
+    <section id="tramites" class="py-16 bg-slate-100 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="bg-ies-100 text-ies-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-ies-600/20">
+                    Módulo de Prueba - Proyecto Final
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">
+                    Portal de Trámites y Verificación Digital con IA
+                </h2>
+                <p class="text-slate-600 text-sm mt-2">
+                    Simula la gestión de constancias estudiantiles mediante validación biométrica facial y lectura de DNI.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
+                
+                <!-- Formulario -->
+                <div class="lg:col-span-5 p-6 sm:p-8 bg-slate-50 border-r border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2 mb-4">
+                            <i data-lucide="user-check" class="w-5 h-5 text-ies-600"></i>
+                            Datos de Solicitante
+                        </h3>
+                        
+                        <form id="aiSimulationForm" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Número de DNI</label>
+                                <input type="text" id="dniInput" placeholder="Ej: 42189302" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-ies-600 focus:border-ies-600 text-sm font-medium bg-white outline-none transition" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Trámite a Solicitar</label>
+                                <select id="tramiteType" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-ies-600 focus:border-ies-600 text-sm font-medium bg-white outline-none transition">
+                                    <option value="Constancia de Alumno Regular">Constancia de Alumno Regular</option>
+                                    <option value="Certificado de Examen Rendido">Certificado de Examen Rendido</option>
+                                    <option value="Solicitud de Analítico Parcial">Solicitud de Analítico Parcial</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-3 pt-2">
+                                <label class="block text-xs font-semibold text-slate-700 uppercase">Validación Biométrica (DNI + Rostro)</label>
+                                
+                                <div class="border-2 border-dashed border-slate-300 rounded-xl p-3 text-center bg-white hover:border-ies-600 transition cursor-pointer relative group mb-3" onclick="triggerFileInput('dniFile')">
+                                    <i data-lucide="file-badge" class="w-6 h-6 mx-auto text-slate-400 group-hover:text-ies-600"></i>
+                                    <span class="block text-xs font-medium text-slate-600 mt-1" id="dniFileLabel">1. Cargar Foto DNI Frente</span>
+                                    <input type="file" id="dniFile" class="hidden" accept="image/*" onchange="updateFileName(this, 'dniFileLabel', 'DNI Cargado')">
+                                </div>
+
+                                <div class="bg-slate-100 p-3 rounded-xl border border-slate-200 space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-bold text-slate-700">2. Captura de Rostro</span>
+                                        <div class="flex gap-1 text-[11px]">
+                                            <button type="button" id="btnTabWebcam" onclick="switchFaceMode('webcam')" class="px-2.5 py-1 rounded-md bg-ies-600 text-white font-medium shadow-sm">Cámara En Vivo</button>
+                                            <button type="button" id="btnTabFile" onclick="switchFaceMode('file')" class="px-2.5 py-1 rounded-md bg-slate-200 text-slate-600 hover:bg-slate-300 font-medium">Subir Archivo</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="webcamContainer" class="space-y-2">
+                                        <div class="relative w-full aspect-video bg-slate-900 rounded-lg overflow-hidden border border-slate-700 flex items-center justify-center">
+                                            <video id="webcamVideo" autoplay playsinline class="w-full h-full object-cover hidden"></video>
+                                            <canvas id="faceCanvas" class="absolute inset-0 w-full h-full pointer-events-none hidden"></canvas>
+                                            <img id="capturedFacePreview" class="w-full h-full object-cover hidden" alt="Foto capturada">
+
+                                            <div id="webcamPlaceholder" class="text-center p-4">
+                                                <i data-lucide="camera" class="w-8 h-8 mx-auto text-slate-500 mb-2"></i>
+                                                <p class="text-xs text-slate-400">Cámara Apagada</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex gap-2">
+                                            <button type="button" id="btnStartCamera" onclick="startWebcam()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium py-2 rounded-lg transition flex items-center justify-center gap-1">
+                                                <i data-lucide="video" class="w-3.5 h-3.5"></i> Encender Cámara
+                                            </button>
+                                            <button type="button" id="btnCapture" onclick="captureSnapshot()" class="hidden flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                                                <i data-lucide="aperture" class="w-3.5 h-3.5"></i> Capturar Foto
+                                            </button>
+                                            <button type="button" id="btnRetake" onclick="resetWebcamCapture()" class="hidden bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-medium px-3 py-2 rounded-lg transition flex items-center justify-center gap-1">
+                                                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Repetir
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div id="fileContainer" class="hidden border-2 border-dashed border-slate-300 rounded-xl p-3 text-center bg-white hover:border-ies-600 transition cursor-pointer group" onclick="triggerFileInput('faceFile')">
+                                        <i data-lucide="image" class="w-6 h-6 mx-auto text-slate-400 group-hover:text-ies-600"></i>
+                                        <span class="block text-xs font-medium text-slate-600 mt-1" id="faceFileLabel">Cargar Foto Rostro</span>
+                                        <input type="file" id="faceFile" class="hidden" accept="image/*" onchange="updateFileName(this, 'faceFileLabel', 'Rostro Cargado')">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="btnSimulate" class="w-full bg-ies-600 hover:bg-ies-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-ies-600/30 transition flex items-center justify-center gap-2 mt-4">
+                                <i data-lucide="play-circle" class="w-5 h-5"></i>
+                                Iniciar Procesamiento IA
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Panel Monitor -->
+                <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between bg-slate-900 text-white relative">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                                <span class="text-xs font-mono text-slate-300">ESTADO DEL PROCESO DE IA</span>
+                            </div>
+                            <span id="aiProgressPercent" class="text-xs font-mono text-amber-400">0% COMPLETADO</span>
+                        </div>
+
+                        <div class="mt-6 space-y-4" id="processSteps">
+                            <div class="step-item flex items-center gap-3 p-3 rounded-lg bg-slate-800/60 border border-slate-800 text-slate-400" id="step-1">
+                                <div class="step-icon p-2 rounded-full bg-slate-700 text-slate-400">
+                                    <i data-lucide="scan" class="w-4 h-4"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-slate-200">1. Escaneo OCR & Extracción de Datos DNI</p>
+                                    <p class="text-[11px] text-slate-400 font-mono">Esperando inicio...</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item flex items-center gap-3 p-3 rounded-lg bg-slate-800/60 border border-slate-800 text-slate-400" id="step-2">
+                                <div class="step-icon p-2 rounded-full bg-slate-700 text-slate-400">
+                                    <i data-lucide="user-check" class="w-4 h-4"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-slate-200">2. Análisis de Coincidencia Biométrica (Facial)</p>
+                                    <p class="text-[11px] text-slate-400 font-mono">Pendiente...</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item flex items-center gap-3 p-3 rounded-lg bg-slate-800/60 border border-slate-800 text-slate-400" id="step-3">
+                                <div class="step-icon p-2 rounded-full bg-slate-700 text-slate-400">
+                                    <i data-lucide="database" class="w-4 h-4"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-slate-200">3. Validación de Matrícula en Base MySQL</p>
+                                    <p class="text-[11px] text-slate-400 font-mono">Pendiente...</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item flex items-center gap-3 p-3 rounded-lg bg-slate-800/60 border border-slate-800 text-slate-400" id="step-4">
+                                <div class="step-icon p-2 rounded-full bg-slate-700 text-slate-400">
+                                    <i data-lucide="file-badge" class="w-4 h-4"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-slate-200">4. Generación y Registro de Auditoría en BD</p>
+                                    <p class="text-[11px] text-slate-400 font-mono">Pendiente...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="certificateResult" class="hidden mt-6 p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/50 text-emerald-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wide flex items-center gap-1.5">
+                                <i data-lucide="check-circle" class="w-4 h-4"></i> Trámite Aprobado con Éxito
+                            </span>
+                            <span class="text-[10px] bg-emerald-800/60 text-emerald-200 px-2 py-0.5 rounded font-mono" id="certHash">HASH</span>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Identidad validada correctamente para <span class="font-bold text-white" id="resDni">42189302</span>. La emisión quedó registrada en la base central MySQL del IES N° 1.
+                        </p>
+                        <div class="mt-3 flex gap-2">
+                            <button type="button" onclick="downloadSimulatedPdf()" class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-lg text-xs transition flex items-center gap-1">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i> Descargar Comprobante PDF
+                            </button>
+                            <button type="button" onclick="resetSimulation()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium rounded-lg text-xs transition">
+                                Reiniciar Prueba
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Oferta Académica -->
+    <section id="carreras" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-ies-600 font-bold text-xs uppercase tracking-wider">Formación Profesional</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Oferta Académica Destacada</h2>
+                </div>
+                <p class="text-slate-500 text-sm max-w-md mt-2 md:mt-0">
+                    Carreras de nivel superior orientadas a la tecnología, ciencia de datos, soporte técnico y educación.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-ies-100 text-ies-700 flex items-center justify-center mb-4 group-hover:bg-ies-600 group-hover:text-white transition duration-300">
+                            <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-[11px] font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+                            3 Años - Título Oficial
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-900 mt-3 group-hover:text-ies-600 transition">
+                            TS en Ciencia de Datos e Inteligencia Artificial
+                        </h3>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            Formación avanzada en machine learning, procesamiento de datos, algoritmos predictivos y desarrollo de soluciones basadas en IA.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-200 mt-6 flex items-center justify-between text-xs font-semibold text-ies-700">
+                        <span>Modalidad Presencial / Híbrida</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-ies-100 text-ies-700 flex items-center justify-center mb-4 group-hover:bg-ies-600 group-hover:text-white transition duration-300">
+                            <i data-lucide="server" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-[11px] font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+                            3 Años - Título Oficial
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-900 mt-3 group-hover:text-ies-600 transition">
+                            TS en Soporte de Infraestructura de TI
+                        </h3>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            Especialización en redes de computadoras, ciberseguridad, administración de servidores y arquitectura de sistemas cloud.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-200 mt-6 flex items-center justify-between text-xs font-semibold text-ies-700">
+                        <span>Modalidad Presencial</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-ies-100 text-ies-700 flex items-center justify-center mb-4 group-hover:bg-ies-600 group-hover:text-white transition duration-300">
+                            <i data-lucide="book-open-check" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-[11px] font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+                            4 Años - Título Oficial
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-900 mt-3 group-hover:text-ies-600 transition">
+                            Profesorados de Educación Superior
+                        </h3>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            Formación docente continua integrando herramientas digitales para la enseñanza pedagógica.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-200 mt-6 flex items-center justify-between text-xs font-semibold text-ies-700">
+                        <span>Sedes Diversas en Jujuy</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-ies-dark text-slate-400 text-xs py-12 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
+            <div class="space-y-3 md:col-span-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-white/10 p-0.5 flex items-center justify-center">
+                        <img src="277751642_434256015170610_8799041938373749076_n-removebg-preview.png" alt="Logo IES N° 1" class="w-full h-full object-contain">
+                    </div>
+                    <span class="font-bold text-white text-sm">Instituto de Educación Superior N° 1 - Jujuy</span>
+                </div>
+                <p class="text-slate-400 max-w-sm leading-relaxed">
+                    Institución pública comprometida con la formación técnica superior, tecnológica y docente en la Provincia de Jujuy, Argentina.
+                </p>
+            </div>
+
+            <div>
+                <h5 class="text-white font-semibold text-sm mb-3">Sedes Institucionales</h5>
+                <ul class="space-y-2">
+                    <li>Sede La Quiaca</li>
+                    <li>Sede Abra Pampa</li>
+                    <li>Sede Tilcara</li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-white font-semibold text-sm mb-3">Entorno de Pruebas</h5>
+                <p class="text-slate-400 mb-2">Página interactiva configurada para testing del proyecto de validación con IA.</p>
+                <span class="text-[10px] bg-slate-800 text-amber-400 px-2 py-1 rounded border border-slate-700">Entorno Demo / Proyecto Final</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-800 text-center text-slate-500">
+            <p>© 2026 Instituto de Educación Superior N° 1 de Jujuy - Portal de Simulación IA.</p>
+        </div>
+    </footer>
+
+    <!-- WIDGET COMPONENTE CHATBOT FLOTANTE -->
+    <div id="chatWidget" class="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+        <!-- Ventana del Chat (Oculta por defecto) -->
+        <div id="chatWindow" class="hidden w-80 sm:w-96 h-[460px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden mb-3 transition-all duration-300">
+            <!-- Header del Chat -->
+            <div class="bg-ies-900 text-white p-3.5 flex items-center justify-between border-b border-ies-800">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-ies-600 flex items-center justify-center text-amber-300 font-bold text-xs shadow">
+                        <i data-lucide="bot" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold leading-tight">Asistente IES N° 1</h4>
+                        <span class="text-[10px] text-emerald-400 flex items-center gap-1 font-mono">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> En línea
+                        </span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-slate-300 hover:text-white p-1 rounded-lg hover:bg-slate-800">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Cuerpo de Mensajes -->
+            <div id="chatMessages" class="flex-1 p-3.5 overflow-y-auto space-y-3 bg-slate-50 text-xs">
+                <div class="flex gap-2">
+                    <div class="w-6 h-6 rounded-full bg-ies-600 flex items-center justify-center text-white shrink-0 text-[10px] font-bold">IA</div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed">
+                        ¡Hola! 👋 Soy el asistente virtual del **IES N° 1**. ¿En qué puedo ayudarte hoy?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preguntas Frecuentes Rápidas -->
+            <div class="p-2 bg-slate-100 border-t border-slate-200 flex gap-1.5 overflow-x-auto text-[11px] no-scrollbar">
+                <button onclick="sendQuickMessage('¿Qué carreras ofrecen?')" class="bg-white border border-slate-300 hover:border-ies-600 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap shadow-sm font-medium">🎓 Carreras</button>
+                <button onclick="sendQuickMessage('¿Cómo solicito una constancia?')" class="bg-white border border-slate-300 hover:border-ies-600 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap shadow-sm font-medium">📜 Constancias</button>
+                <button onclick="sendQuickMessage('¿Cuáles son las sedes?')" class="bg-white border border-slate-300 hover:border-ies-600 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap shadow-sm font-medium">📍 Sedes</button>
+            </div>
+
+            <!-- Formulario de Entrada -->
+            <form id="chatForm" onsubmit="handleUserMessage(event)" class="p-2 bg-white border-t border-slate-200 flex gap-1.5">
+                <input type="text" id="chatInput" placeholder="Escribe tu consulta aquí..." class="flex-1 px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:border-ies-600 text-xs bg-slate-50" required autocomplete="off">
+                <button type="submit" class="bg-ies-600 hover:bg-ies-700 text-white px-3 py-2 rounded-xl transition flex items-center justify-center">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Botón Flotante para Abrir Chat -->
+        <button onclick="toggleChat()" class="bg-gradient-to-r from-ies-600 to-amber-500 hover:scale-105 text-white p-3.5 rounded-full shadow-2xl transition duration-300 flex items-center gap-2 border-2 border-white">
+            <i data-lucide="message-square-code" class="w-6 h-6"></i>
+            <span class="text-xs font-bold hidden sm:inline pr-1">Consultas IA</span>
+        </button>
+    </div>
+
+    <!-- SCRIPT JS PRINCIPAL CON CONEXIÓN MYSQL Y CHATBOT -->
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        const API_URL = "http://127.0.0.1:8000/api";
+        let mediaStream = null;
+        let isCaptured = false;
+        let isSimulating = false;
+        let datosAlumnoActual = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const aiForm = document.getElementById('aiSimulationForm');
+            if (aiForm) {
+                aiForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    startAiSimulation();
+                });
+            }
+        });
+
+        function switchFaceMode(mode) {
+            const webcamContainer = document.getElementById('webcamContainer');
+            const fileContainer = document.getElementById('fileContainer');
+            const btnTabWebcam = document.getElementById('btnTabWebcam');
+            const btnTabFile = document.getElementById('btnTabFile');
+
+            if (mode === 'webcam') {
+                webcamContainer.classList.remove('hidden');
+                fileContainer.classList.add('hidden');
+                btnTabWebcam.className = "px-2.5 py-1 rounded-md bg-ies-600 text-white font-medium shadow-sm";
+                btnTabFile.className = "px-2.5 py-1 rounded-md bg-slate-200 text-slate-600 hover:bg-slate-300 font-medium";
+            } else {
+                webcamContainer.classList.add('hidden');
+                fileContainer.classList.remove('hidden');
+                btnTabFile.className = "px-2.5 py-1 rounded-md bg-ies-600 text-white font-medium shadow-sm";
+                btnTabWebcam.className = "px-2.5 py-1 rounded-md bg-slate-200 text-slate-600 hover:bg-slate-300 font-medium";
+                stopWebcam();
+            }
+        }
+
+        async function startWebcam() {
+            const video = document.getElementById('webcamVideo');
+            const placeholder = document.getElementById('webcamPlaceholder');
+            const btnStart = document.getElementById('btnStartCamera');
+            const btnCapture = document.getElementById('btnCapture');
+
+            try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: "user" } 
+                });
+                video.srcObject = mediaStream;
+                video.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                btnStart.classList.add('hidden');
+                btnCapture.classList.remove('hidden');
+            } catch (err) {
+                alert("No se pudo acceder a la cámara. Comprueba los permisos o sube un archivo.");
+                console.error(err);
+            }
+        }
+
+        function captureSnapshot() {
+            const video = document.getElementById('webcamVideo');
+            const canvas = document.getElementById('faceCanvas');
+            const preview = document.getElementById('capturedFacePreview');
+            const btnCapture = document.getElementById('btnCapture');
+            const btnRetake = document.getElementById('btnRetake');
+
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const imageData = canvas.toDataURL('image/png');
+            preview.src = imageData;
+            preview.classList.remove('hidden');
+            video.classList.add('hidden');
+
+            btnCapture.classList.add('hidden');
+            btnRetake.classList.remove('hidden');
+            isCaptured = true;
+
+            drawBiometricOverlay(canvas);
+            stopWebcam();
+        }
+
+        function drawBiometricOverlay(canvas) {
+            const ctx = canvas.getContext('2d');
+            canvas.classList.remove('hidden');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.strokeStyle = '#0284c7';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(w * 0.3, h * 0.2, w * 0.4, h * 0.55);
+
+            ctx.fillStyle = '#f59e0b';
+            const points = [
+                {x: w * 0.42, y: h * 0.4}, {x: w * 0.58, y: h * 0.4},
+                {x: w * 0.5, y: h * 0.52},
+                {x: w * 0.45, y: h * 0.63}, {x: w * 0.55, y: h * 0.63}
+            ];
+
+            points.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function resetWebcamCapture() {
+            const preview = document.getElementById('capturedFacePreview');
+            const canvas = document.getElementById('faceCanvas');
+            const btnRetake = document.getElementById('btnRetake');
+
+            preview.classList.add('hidden');
+            canvas.classList.add('hidden');
+            btnRetake.classList.add('hidden');
+            isCaptured = false;
+
+            startWebcam();
+        }
+
+        function stopWebcam() {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+        }
+
+        function triggerFileInput(id) {
+            document.getElementById(id).click();
+        }
+
+        function updateFileName(input, labelId, successMsg) {
+            if (input.files && input.files[0]) {
+                const label = document.getElementById(labelId);
+                label.innerText = successMsg + ': ' + input.files[0].name.substring(0, 10) + '...';
+                label.classList.add('text-emerald-600', 'font-bold');
+            }
+        }
+
+        async function startAiSimulation() {
+            if (isSimulating) return;
+            isSimulating = true;
+
+            const btn = document.getElementById('btnSimulate');
+            const dniInput = document.getElementById('dniInput');
+            const tramiteSelect = document.getElementById('tramiteType');
+            
+            const dniVal = (dniInput && dniInput.value.trim() !== "") ? dniInput.value.trim() : "42189302";
+            const tramiteVal = tramiteSelect ? tramiteSelect.value : "Constancia de Alumno Regular";
+            const resultBox = document.getElementById('certificateResult');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            resultBox.classList.add('hidden');
+            resetStepsUI();
+
+            try {
+                updateStepUI(1, 'active', 'Escaneando OCR y leyendo DNI...', '25% COMPLETADO');
+                await new Promise(r => setTimeout(r, 800));
+                updateStepUI(1, 'completed', 'DNI Válido Ingresado: ' + dniVal, '25% COMPLETADO');
+
+                updateStepUI(2, 'active', 'Analizando vectores faciales...', '50% COMPLETADO');
+                await new Promise(r => setTimeout(r, 1000));
+                const scoreBiometrico = (95 + Math.random() * 4.5).toFixed(1);
+                updateStepUI(2, 'completed', `Coincidencia Facial: ${scoreBiometrico}%`, '50% COMPLETADO');
+
+                updateStepUI(3, 'active', 'Verificando en Base de Datos MySQL...', '75% COMPLETADO');
+                
+                const res = await fetch(`${API_URL}/verificar-alumno`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        dni: dniVal, 
+                        tramite: tramiteVal, 
+                        score_biometrico: parseFloat(scoreBiometrico) 
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok || !data.exito) {
+                    updateStepUI(3, 'active', `Error BD: ${data.mensaje || 'DNI no encontrado'}`, '75% COMPLETADO');
+                    alert(`[ERROR EN BASE DE DATOS]: ${data.mensaje}`);
+                    isSimulating = false;
+                    return;
+                }
+
+                datosAlumnoActual = data.alumno;
+                updateStepUI(3, 'completed', `Alumno: ${data.alumno.nombre_completo} (${data.alumno.carrera})`, '75% COMPLETADO');
+
+                updateStepUI(4, 'active', 'Generando firma digital y guardando en BD...', '95% COMPLETADO');
+                await new Promise(r => setTimeout(r, 800));
+                updateStepUI(4, 'completed', 'Guardado en Tabla de Auditoría (ID: #' + data.tramite_id + ')', '100% COMPLETADO');
+
+                document.getElementById('resDni').innerText = `${dniVal} - ${data.alumno.nombre_completo}`;
+                document.getElementById('certHash').innerText = 'HASH: ' + data.hash_comprobante;
+                resultBox.classList.remove('hidden');
+
+            } catch (err) {
+                console.error("Error al conectar:", err);
+                alert("No se pudo conectar con el servidor Python (main.py). Asegúrate de tener encendido 'python main.py' en la terminal de VS Code.");
+            } finally {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                isSimulating = false;
+            }
+        }
+
+        function resetStepsUI() {
+            for (let i = 1; i <= 4; i++) {
+                const step = document.getElementById(`step-${i}`);
+                if (step) {
+                    step.className = "step-item flex items-center gap-3 p-3 rounded-lg bg-slate-800/60 border border-slate-800 text-slate-400";
+                    const textDetail = step.querySelector('p:nth-child(2)');
+                    if (textDetail) {
+                        textDetail.innerText = "Pendiente...";
+                        textDetail.className = "text-[11px] text-slate-400 font-mono";
+                    }
+                }
+            }
+        }
+
+        function updateStepUI(stepNum, status, detailMsg, progressMsg) {
+            const step = document.getElementById(`step-${stepNum}`);
+            const progressPercent = document.getElementById('aiProgressPercent');
+            
+            if (progressPercent) {
+                progressPercent.innerText = progressMsg;
+            }
+
+            if (step) {
+                const textDetail = step.querySelector('p:nth-child(2)');
+                if (textDetail) {
+                    textDetail.innerText = detailMsg;
+                    if (status === 'active') {
+                        step.className = "step-item flex items-center gap-3 p-3 rounded-lg bg-amber-950/40 border border-amber-500/40 text-amber-200 animate-pulse";
+                        textDetail.className = "text-[11px] text-amber-300 font-mono";
+                    } else if (status === 'completed') {
+                        step.className = "step-item flex items-center gap-3 p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-200";
+                        textDetail.className = "text-[11px] text-emerald-300 font-mono";
+                    }
+                }
+            }
+        }
+
+        function downloadSimulatedPdf() {
+            if (!window.jspdf) {
+                alert("Cargando librería PDF, por favor intenta en un segundo...");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const tramiteSelect = document.getElementById('tramiteType');
+            const tramiteNombre = tramiteSelect ? tramiteSelect.options[tramiteSelect.selectedIndex].text : "Constancia de Alumno Regular";
+            const dniVal = document.getElementById('dniInput').value || "42189302";
+            const nombreAlumno = datosAlumnoActual ? datosAlumnoActual.nombre_completo : "ESTUDIANTE REGISTRADO";
+            const carreraAlumno = datosAlumnoActual ? datosAlumnoActual.carrera : "Carrera Superior del IES N° 1";
+            const sedeAlumno = datosAlumnoActual ? datosAlumnoActual.sede : "Jujuy";
+            const fechaActual = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            const codigoHash = document.getElementById('certHash').innerText.replace('HASH: ', '') || 'IES1-89F2A1';
+
+            doc.setFillColor(12, 74, 110);
+            doc.rect(0, 0, 210, 26, 'F');
+            
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(13);
+            doc.setFont('helvetica', 'bold');
+            doc.text("INSTITUTO DE EDUCACIÓN SUPERIOR N° 1", 105, 12, { align: "center" });
+            
+            doc.setFontSize(8.5);
+            doc.setFont('helvetica', 'normal');
+            doc.text("MINISTERIO DE EDUCACIÓN - PROVINCIA DE JUJUY", 105, 18, { align: "center" });
+
+            doc.setTextColor(15, 23, 42);
+            doc.setFontSize(13);
+            doc.setFont('helvetica', 'bold');
+            doc.text(tramiteNombre.toUpperCase(), 105, 42, { align: "center" });
+            
+            doc.setDrawColor(2, 132, 199);
+            doc.setLineWidth(0.8);
+            doc.line(20, 46, 190, 46);
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(51, 65, 85);
+
+            const textoCuerpo = `Por la presente se hace constar que el/la estudiante ${nombreAlumno}, DNI N° ${dniVal}, perteneciente a la carrera ${carreraAlumno} (Sede ${sedeAlumno}), se encuentra debidamente registrado/a en el Padrón Institucional del Instituto de Educación Superior N° 1 de la Provincia de Jujuy, habiendo completado satisfactoriamente el protocolo de verificación de identidad digital mediante análisis biométrico facial y lectura OCR de DNI.`;
+            
+            doc.text(doc.splitTextToSize(textoCuerpo, 170), 20, 56);
+
+            doc.setFillColor(241, 245, 249);
+            doc.rect(20, 80, 170, 50, 'F');
+            doc.rect(20, 80, 170, 50, 'S');
+
+            doc.setFont('helvetica', 'bold');
+            doc.text("DATOS DE VALIDACIÓN REGISTRADOS EN BASE DE DATOS (MYSQL):", 25, 88);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text(`• Estudiante:  ${nombreAlumno}`, 25, 97);
+            doc.text(`• DNI:  ${dniVal}  |  Sede: ${sedeAlumno}`, 25, 105);
+            doc.text(`• Carrera:  ${carreraAlumno}`, 25, 113);
+            doc.text(`• Estado:  REGULAR / ACTIVO  |  Fecha: ${fechaActual}`, 25, 121);
+
+            doc.setDrawColor(203, 213, 225);
+            doc.setLineWidth(0.5);
+            doc.line(20, 142, 190, 142);
+
+            doc.setFillColor(248, 250, 252);
+            doc.rect(20, 148, 110, 30, 'F');
+            doc.setFontSize(8);
+            doc.setFont('courier', 'bold');
+            doc.setTextColor(15, 23, 42);
+            doc.text("DOCUMENTO FIRMADO DIGITALMENTE", 23, 154);
+            doc.setFont('courier', 'normal');
+            doc.setTextColor(100, 116, 139);
+            doc.text(`Firmante: Secretaria Académica - IES N° 1`, 23, 161);
+            doc.text(`Algoritmo: RSA-2048 / SHA-256`, 23, 167);
+            doc.text(`Verificación BD: ${codigoHash}`, 23, 173);
+
+            doc.rect(145, 146, 45, 34);
+            doc.setFontSize(7);
+            doc.setFont('helvetica', 'bold');
+            doc.text("CÓDIGO QR DE", 167, 159, { align: "center" });
+            doc.text("VERIFICACIÓN", 167, 164, { align: "center" });
+            doc.setFontSize(6);
+            doc.setFont('helvetica', 'normal');
+            doc.text("[Escanear para validar en BD]", 167, 173, { align: "center" });
+
+            doc.save(`Constancia_Oficial_IES1_${dniVal}.pdf`);
+        }
+
+        function resetSimulation() {
+            resetStepsUI();
+            document.getElementById('certificateResult').classList.add('hidden');
+            document.getElementById('aiProgressPercent').innerText = '0% COMPLETADO';
+        }
+
+        // ==========================================
+        // LÓGICA DEL CHATBOT DE ASISTENCIA VIRTUAL
+        // ==========================================
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('hidden');
+        }
+
+        function sendQuickMessage(text) {
+            document.getElementById('chatInput').value = text;
+            handleUserMessage(new Event('submit'));
+        }
+
+        function handleUserMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            appendChatMessage(message, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                appendChatMessage(response, 'bot');
+            }, 600);
+        }
+
+        function appendChatMessage(text, sender) {
+            const container = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'user' ? 'flex justify-end' : 'flex gap-2';
+
+            if (sender === 'user') {
+                msgDiv.innerHTML = `
+                    <div class="bg-ies-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[80%] leading-relaxed shadow-sm">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                msgDiv.innerHTML = `
+                    <div class="w-6 h-6 rounded-full bg-ies-600 flex items-center justify-center text-white shrink-0 text-[10px] font-bold">IA</div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed max-w-[85%]">
+                        ${text}
+                    </div>
+                `;
+            }
+
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function getBotResponse(input) {
+            const text = input.toLowerCase();
+
+            if (text.includes('carrera') || text.includes('oferta') || text.includes('estudiar')) {
+                return "Ofrecemos la **Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial**, la **Tecnicatura Superior en Soporte de Infraestructura de TI** y diversos **Profesorados de Educación Superior**.";
+            } else if (text.includes('constancia') || text.includes('tramite') || text.includes('certificado') || text.includes('analitico')) {
+                return "Puedes solicitar tu **Constancia de Alumno Regular** en este portal. Solo ingresa tu número de DNI en el formulario superior, activa tu cámara para el cotejo facial y haz clic en *Iniciar Procesamiento IA*.";
+            } else if (text.includes('sede') || text.includes('donde') || text.includes('lugar')) {
+                return "El IES N° 1 cuenta con sedes en **Abra Pampa**, **La Quiaca** y **Tilcara** en la provincia de Jujuy.";
+            } else if (text.includes('hola') || text.includes('buenas')) {
+                return "¡Hola! ¿En qué te puedo ayudar sobre los trámites o carreras del IES N° 1?";
+            } else if (text.includes('dni') || text.includes('no encontrado')) {
+                return "Si tu DNI no aparece en el sistema, asegúrate de que el docente o administrador te haya cargado previamente en la tabla de alumnos de MySQL.";
+            } else {
+                return "Para esa consulta te sugiero dirigirte a la **Secretaría Académica** de tu sede o ingresar tu DNI arriba para validar tu estado en el sistema.";
+            }
+        }
+    </script>
+</body>
+</html>
