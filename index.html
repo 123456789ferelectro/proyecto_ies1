@@ -693,7 +693,7 @@
                 
                 const data = await verificarAlumno(dniVal, tramiteVal, parseFloat(scoreBiometrico));
 
-                if (!res.ok || !data.exito) {
+                if (!data.exito) {
                     updateStepUI(3, 'active', `Error BD: ${data.mensaje || 'DNI no encontrado'}`, '75% COMPLETADO');
                     alert(`[ERROR EN BASE DE DATOS]: ${data.mensaje}`);
                     isSimulating = false;
