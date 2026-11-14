@@ -73,7 +73,7 @@
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center gap-3 group">
                     <div class="w-12 h-12 rounded-full p-0.5 shadow-lg group-hover:scale-105 transition duration-300 flex items-center justify-center bg-white/10">
-                        <img src="logo.png" alt="Logo IES N° 1" class="w-full h-full object-contain">
+                        <img src="./logo.png" alt="Logo IES N° 1" class="w-full h-full object-contain">
                     </div>
                     <div>
                         <h1 class="font-bold text-base sm:text-lg leading-tight tracking-tight text-white group-hover:text-amber-400 transition">
@@ -914,15 +914,25 @@
                 return "Puedes solicitar tu **Constancia de Alumno Regular** en este portal. Solo ingresa tu número de DNI en el formulario superior, activa tu cámara para el cotejo facial y haz clic en *Iniciar Procesamiento IA*.";
             } else if (text.includes('sede') || text.includes('donde') || text.includes('lugar')) {
                 return "El IES N° 1 cuenta con sedes en **Abra Pampa**, **La Quiaca** y **Tilcara** en la provincia de Jujuy.";
-            } else if (text.includes('hola') || text.includes('buenas')) {
-                return "¡Hola! ¿En qué te puedo ayudar sobre los trámites o carreras del IES N° 1?";
-            } else if (text.includes('dni') || text.includes('no encontrado')) {
-                return "Si tu DNI no aparece en el sistema, asegúrate de que el docente o administrador te haya cargado previamente en la tabla de alumnos de MySQL.";
             } else {
-                return "Para esa consulta te sugiero dirigirte a la **Secretaría Académica** de tu sede o ingresar tu DNI arriba para validar tu estado en el sistema.";
-            }
+            return "Para esa consulta te sugiero dirigirte a la **Secretaría Académica** de tu sede o ingresar tu DNI al sistema.";
         }
+    }
     </script>
+
+    <!-- Sección del Código QR de Telegram -->
+    <div class="flex flex-col items-center justify-center p-6 bg-slate-800/80 rounded-2xl border border-slate-700 shadow-xl my-6 max-w-xs mx-auto">
+        <h3 class="text-white font-bold text-base mb-3 text-center">📱 Canal de Telegram IES N° 1</h3>
+        
+        <a href="https://t.me/AQUI_PON_TU_ENLACE_DE_TELEGRAM" target="_blank" class="block group bg-white p-2 rounded-xl shadow-md">
+            <img src="./telegram-qr.png" alt="QR Telegram IES N° 1" class="w-32 h-32 object-contain transition transform group-hover:scale-105">
+        </a>
+        
+        <p class="text-xs text-slate-400 mt-3 text-center">Escaneá con la cámara o hacé clic para unirte</p>
+    </div>
+
+    <!-- Script principal de la aplicación -->
     <script src="script.js"></script>
 </body>
+</html>
 </html>
